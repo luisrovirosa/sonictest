@@ -5,6 +5,7 @@ namespace JlDojo\SonicTest\Tests\Unit;
 use JlDojo\SonicTest\ChangeDetector;
 use JlDojo\SonicTest\Changes;
 use JlDojo\SonicTest\ExecutionResult;
+use JlDojo\SonicTest\Output;
 use JlDojo\SonicTest\Printer;
 use JlDojo\SonicTest\SonicTest;
 use JlDojo\SonicTest\TestMatcher;
@@ -19,6 +20,10 @@ class SonicTestTest extends TestCase
     /**
      * @var ObjectProphecy
      */
+    private $outputProphecy;
+    /**
+     * @var ObjectProphecy
+     */
     private $testRunnerProphecy;
     /**
      * @var ObjectProphecy
@@ -28,7 +33,6 @@ class SonicTestTest extends TestCase
      * @var ObjectProphecy
      */
     private $testMatcherProphecy;
-
     /**
      * @var ObjectProphecy
      */
@@ -44,6 +48,7 @@ class SonicTestTest extends TestCase
         $this->printerProphecy = $this->prophesize(Printer::class);
         $this->testRunnerProphecy = $this->prophesize(TestRunner::class);
         $this->testRunnerProphecy->runTests(Argument::any())->willReturn(new ExecutionResult());
+        $this->outputProphecy = $this->prophesize(Output::class);
     }
 
     /** @test */
@@ -78,7 +83,20 @@ class SonicTestTest extends TestCase
         $sonicTest = $this->createSonicTest();
 
         $this->testRunnerProphecy->runTests(Argument::is($tests))
-            ->shouldBeCalled();
+                                 ->shouldBeCalled();
+
+        $sonicTest->run();
+    }
+
+    /** @test */
+    public function run_uses_output_with_execution_result()
+    {
+        $executionResult = new ExecutionResult();
+        $this->testRunnerProphecy->runTests(Argument::any())->willReturn($executionResult);
+        $sonicTest = $this->createSonicTest();
+
+        $this->outputProphecy->printResult(Argument::is($executionResult))
+                             ->shouldBeCalled();
 
         $sonicTest->run();
     }
@@ -92,6 +110,7 @@ class SonicTestTest extends TestCase
             $this->changeDetectorProphecy->reveal(),
             $this->testMatcherProphecy->reveal(),
             $this->testRunnerProphecy->reveal(),
+            $this->outputProphecy->reveal(),
             $this->printerProphecy->reveal()
         );
     }
