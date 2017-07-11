@@ -10,21 +10,37 @@ use JlDojo\SonicTest\TestMatcher;
 use JlDojo\SonicTest\Tests;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\Prophecy\ObjectProphecy;
 
 class SonicTestTest extends TestCase
 {
+    /**
+     * @var ObjectProphecy
+     */
+    private $testMatcherProphecy;
+
+    /**
+     * @var ObjectProphecy
+     */
+    private $changeDetectorProphecy;
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->changeDetectorProphecy = $this->prophesize(ChangeDetector::class);
+        $this->testMatcherProphecy = $this->prophesize(TestMatcher::class);
+    }
+
     /** @test */
     public function run_uses_change_detector()
     {
-        $changeDetectorPropechy = $this->prophesize(ChangeDetector::class);
-        $testMatcherProphecy = $this->prophesize(TestMatcher::class);
-        $testMatcherProphecy->matchTests(Argument::any())->willReturn(new Tests());
+        $this->testMatcherProphecy->matchTests(Argument::any())->willReturn(new Tests());
         $printer = $this->prophesize(Printer::class)->reveal();
-        $sonic = new SonicTest($changeDetectorPropechy->reveal(), $testMatcherProphecy->reveal(), $printer);
+        $sonic = new SonicTest($this->changeDetectorProphecy->reveal(), $this->testMatcherProphecy->reveal(), $printer);
 
-        $changeDetectorPropechy->detectChanges()
-                               ->willReturn(new Changes())
-                               ->shouldBeCalled();
+        $this->changeDetectorProphecy->detectChanges()
+                                     ->willReturn(new Changes())
+                                     ->shouldBeCalled();
 
         $sonic->run();
     }
@@ -32,20 +48,18 @@ class SonicTestTest extends TestCase
     /** @test */
     public function run_uses_test_matcher_with_change_detector_input()
     {
-        $changeDetectorPropechy = $this->prophesize(ChangeDetector::class);
         $changes = new Changes();
-        $changeDetectorPropechy->detectChanges()->willReturn($changes);
-        $testMatcherProphecy = $this->prophesize(TestMatcher::class);
+        $this->changeDetectorProphecy->detectChanges()->willReturn($changes);
         $printer = $this->prophesize(Printer::class)->reveal();
         $sonic = new SonicTest(
-            $changeDetectorPropechy->reveal(),
-            $testMatcherProphecy->reveal(),
+            $this->changeDetectorProphecy->reveal(),
+            $this->testMatcherProphecy->reveal(),
             $printer
         );
 
-        $testMatcherProphecy->matchTests($changes)
-                            ->willReturn(new Tests())
-                            ->shouldBeCalled();
+        $this->testMatcherProphecy->matchTests($changes)
+                                  ->willReturn(new Tests())
+                                  ->shouldBeCalled();
 
         $sonic->run();
     }
