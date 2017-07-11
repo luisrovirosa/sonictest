@@ -16,31 +16,39 @@ class SonicTest
      * @var TestMatcher
      */
     private $testMatcher;
+    /**
+     * @var TestRunner
+     */
+    private $testRunner;
 
     /**
      * SonicTest constructor.
      * @param ChangeDetector $changeDetector
      * @param TestMatcher $testMatcher
+     * @param TestRunner $testRunner
      * @param Printer $printer
      */
     public function __construct(
         ChangeDetector $changeDetector,
         TestMatcher $testMatcher,
+        TestRunner $testRunner,
         Printer $printer
     ) {
         $this->changeDetector = $changeDetector;
-        $this->printer = $printer;
         $this->testMatcher = $testMatcher;
+        $this->testRunner = $testRunner;
+        $this->printer = $printer;
     }
 
     public static function withPrinter(Printer $printer): SonicTest
     {
-        return new SonicTest(null, null, $printer);
+        return new SonicTest(null, null, null, $printer);
     }
 
     public function run(): void
     {
         $changes = $this->changeDetector->detectChanges();
-        $this->testMatcher->matchTests($changes);
+        $tests = $this->testMatcher->matchTests($changes);
+        $this->testRunner->runTests($tests);
     }
 }
