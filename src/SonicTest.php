@@ -16,6 +16,11 @@ class SonicTest
         $this->printer = $printer;
     }
 
+    public static function withPrinter(Printer $printer)
+    {
+        return new SonicTest($printer);
+    }
+
     public function run() : void
     {
     }
