@@ -42,7 +42,7 @@ class SonicTestTest extends TestCase
     {
         parent::setUp();
         $this->changeDetectorProphecy = $this->prophesize(ChangeDetector::class);
-        $this->changeDetectorProphecy->detectChanges()->willReturn(new Changes());
+        $this->changeDetectorProphecy->detectChanges()->willReturn(new Changes([]));
         $this->testMatcherProphecy = $this->prophesize(TestMatcher::class);
         $this->testMatcherProphecy->matchTests(Argument::any())->willReturn(new Tests());
         $this->printerProphecy = $this->prophesize(Printer::class);
@@ -65,7 +65,7 @@ class SonicTestTest extends TestCase
     /** @test */
     public function run_uses_test_matcher_with_change_detector_output()
     {
-        $changes = new Changes();
+        $changes = new Changes([]);
         $this->changeDetectorProphecy->detectChanges()->willReturn($changes);
         $sonicTest = $this->createSonicTest();
 
