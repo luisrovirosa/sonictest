@@ -6,7 +6,7 @@ use JlDojo\SonicTest\Printer;
 use JlDojo\SonicTest\SonicTest;
 use PHPUnit\Framework\TestCase;
 
-class SonictestTest extends TestCase
+class SonicTestTest extends TestCase
 {
     /** @test */
     public function an_execution_without_any_change_should_not_run_any_test()
