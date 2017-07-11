@@ -42,7 +42,12 @@ class SonicTest
 
     public static function withPrinter(Printer $printer): SonicTest
     {
-        return new SonicTest(null, null, null, null);
+        return new SonicTest(
+            new GitChangeDetector(new GitRepository()),
+            null,
+            null,
+            null
+        );
     }
 
     public function run(): void
