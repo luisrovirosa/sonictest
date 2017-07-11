@@ -41,17 +41,11 @@ class SonicTestTest extends TestCase
 
     private function makeOneChange()
     {
-        $productionCodePath = __DIR__ . '/../data/src/SimpleProductionCode.php';
-        $content = file_get_contents($productionCodePath);
-        $changedContent = str_replace('return true;', "echo 'hello';\nreturn true;", $content);
-        file_put_contents($productionCodePath, $changedContent);
+        (new Developer())->changeSimpleProductionCode();
     }
 
     private function rollbackChanges()
     {
-        $productionCodePath = __DIR__ . '/../data/src/SimpleProductionCode.php';
-        $content = file_get_contents($productionCodePath);
-        $changedContent = str_replace("echo 'hello';\nreturn true;", 'return true;', $content);
-        file_put_contents($productionCodePath, $changedContent);
+        (new Developer())->revertProductionCode();
     }
 }
