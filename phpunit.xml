@@ -24,6 +24,7 @@
     <testsuites>
         <testsuite name="Sonictest suite">
             <directory>./tests</directory>
+            <exclude>./tests/data</exclude>
         </testsuite>
     </testsuites>
 </phpunit>

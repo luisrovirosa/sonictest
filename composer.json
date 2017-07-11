@@ -23,7 +23,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "JlDojo\\Tests\\": "tests"
+            "JlDojo\\Tests\\": "tests",
+            "JlDojo\\Tests\\Data\\": "tests/data/src",
+            "JlDojo\\Tests\\Data\\Tests\\": "tests/data/tests"
         }
     }
 }
