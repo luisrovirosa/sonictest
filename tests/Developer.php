@@ -1,6 +1,6 @@
 <?php
 
-namespace JlDojo\SonicTest\Tests\e2e;
+namespace JlDojo\SonicTest\Tests;
 
 class Developer
 {

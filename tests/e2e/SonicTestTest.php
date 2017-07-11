@@ -4,6 +4,7 @@ namespace JlDojo\SonicTest\Tests\e2e;
 
 use JlDojo\SonicTest\Printer;
 use JlDojo\SonicTest\SonicTest;
+use JlDojo\SonicTest\Tests\Developer;
 use PHPUnit\Framework\TestCase;
 
 class SonicTestTest extends TestCase
