@@ -17,6 +17,10 @@ class SonicTestTest extends TestCase
     /**
      * @var ObjectProphecy
      */
+    private $printerProphecy;
+    /**
+     * @var ObjectProphecy
+     */
     private $testMatcherProphecy;
 
     /**
@@ -29,38 +33,43 @@ class SonicTestTest extends TestCase
         parent::setUp();
         $this->changeDetectorProphecy = $this->prophesize(ChangeDetector::class);
         $this->testMatcherProphecy = $this->prophesize(TestMatcher::class);
+        $this->testMatcherProphecy->matchTests(Argument::any())->willReturn(new Tests());
+        $this->printerProphecy = $this->prophesize(Printer::class);
     }
 
     /** @test */
     public function run_uses_change_detector()
     {
-        $this->testMatcherProphecy->matchTests(Argument::any())->willReturn(new Tests());
-        $printer = $this->prophesize(Printer::class)->reveal();
-        $sonic = new SonicTest($this->changeDetectorProphecy->reveal(), $this->testMatcherProphecy->reveal(), $printer);
+        $sonicTest = $this->createSonicTest();
 
         $this->changeDetectorProphecy->detectChanges()
-                                     ->willReturn(new Changes())
                                      ->shouldBeCalled();
 
-        $sonic->run();
+        $sonicTest->run();
     }
 
     /** @test */
-    public function run_uses_test_matcher_with_change_detector_input()
+    public function run_uses_test_matcher_with_change_detector_output()
     {
         $changes = new Changes();
         $this->changeDetectorProphecy->detectChanges()->willReturn($changes);
-        $printer = $this->prophesize(Printer::class)->reveal();
-        $sonic = new SonicTest(
-            $this->changeDetectorProphecy->reveal(),
-            $this->testMatcherProphecy->reveal(),
-            $printer
-        );
+        $sonicTest = $this->createSonicTest();
 
-        $this->testMatcherProphecy->matchTests($changes)
-                                  ->willReturn(new Tests())
+        $this->testMatcherProphecy->matchTests(Argument::is($changes))
                                   ->shouldBeCalled();
 
-        $sonic->run();
+        $sonicTest->run();
+    }
+
+    /**
+     * @return SonicTest
+     */
+    private function createSonicTest(): SonicTest
+    {
+        return new SonicTest(
+            $this->changeDetectorProphecy->reveal(),
+            $this->testMatcherProphecy->reveal(),
+            $this->printerProphecy->reveal()
+        );
     }
 }
