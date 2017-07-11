@@ -1,9 +1,9 @@
 <?php
 
-namespace JlDojo\Tests\e2e;
+namespace JlDojo\SonicTest\Tests\e2e;
 
-use JlDojo\Printer;
-use JlDojo\SonicTest;
+use JlDojo\SonicTest\Printer;
+use JlDojo\SonicTest\SonicTest;
 use PHPUnit\Framework\TestCase;
 
 class SonictestTest extends TestCase

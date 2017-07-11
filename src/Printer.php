@@ -1,6 +1,6 @@
 <?php
 
-namespace JlDojo;
+namespace JlDojo\SonicTest;
 
 interface Printer
 {

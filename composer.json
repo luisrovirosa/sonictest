@@ -18,14 +18,14 @@
     },
     "autoload": {
         "psr-4": {
-            "JlDojo\\": "src"
+            "JlDojo\\SonicTest\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "JlDojo\\Tests\\": "tests",
-            "JlDojo\\Tests\\Data\\": "tests/data/src",
-            "JlDojo\\Tests\\Data\\Tests\\": "tests/data/tests"
+            "JlDojo\\SonicTest\\Tests\\": "tests",
+            "JlDojo\\SonicTest\\Tests\\Data\\": "tests/data/src",
+            "JlDojo\\SonicTest\\Tests\\Data\\Tests\\": "tests/data/tests"
         }
     }
 }
