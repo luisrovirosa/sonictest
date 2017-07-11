@@ -4,5 +4,5 @@ namespace JlDojo\SonicTest;
 
 interface Printer
 {
-    public function report($text): void;
+    public function report(string $text): void;
 }
