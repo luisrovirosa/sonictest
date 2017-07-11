@@ -4,9 +4,9 @@ namespace JlDojo\SonicTest;
 
 class GitRepository
 {
-    public function status(): array
+    public function shortStatus(): array
     {
-        exec("git status", $output);
+        exec("git status --short", $output);
         return $output;
     }
 }

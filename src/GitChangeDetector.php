@@ -31,9 +31,10 @@ class GitChangeDetector implements ChangeDetector
      */
     private function getModifiedFiles()
     {
-        $gitResponse = $this->gitRepository->status();
-        return array_values(array_filter($gitResponse, function($line){
-           return strpos($line, "modif") !== false;
-        }));
+        $gitResponse = $this->gitRepository->shortStatus();
+
+        return array_map(function($line){
+            return substr($line, 3);
+        }, $gitResponse);
     }
 }
