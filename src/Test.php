@@ -22,4 +22,9 @@ class Test
     {
         return $this->fullyQualifyClassName;
     }
+
+    function __toString()
+    {
+        return $this->fullyQualifyClassName();
+    }
 }
