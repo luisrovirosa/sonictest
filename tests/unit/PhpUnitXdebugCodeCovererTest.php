@@ -3,6 +3,7 @@
 namespace JlDojo\SonicTest\Tests\Unit;
 
 use JlDojo\SonicTest\PhpUnitXdebugCodeCoverer;
+use JlDojo\SonicTest\Test;
 use PHPUnit\Framework\TestCase;
 
 class PhpUnitXdebugCodeCovererTest extends TestCase
@@ -33,6 +34,11 @@ class PhpUnitXdebugCodeCovererTest extends TestCase
 
         $codeCoverage = $codeCoverer->cover();
 
-        $this->assertCount(1, $codeCoverage->testsRelatedTo(self::SIMPLE_PRODUCTION_CODE));
+        $relatedTests = $codeCoverage->testsRelatedTo(self::SIMPLE_PRODUCTION_CODE);
+        $this->assertCount(1, $relatedTests);
+        /** @var Test $relatedTest */
+        $relatedTest = $relatedTests[0];
+        $this->assertInstanceOf(Test::class, $relatedTest);
+        $this->assertStringStartsWith('JlDojo\SonicTest\Tests\ProjectToTest\Tests\SimpleProductionCodeTest', $relatedTest->fullyQualifyClassName());
     }
 }

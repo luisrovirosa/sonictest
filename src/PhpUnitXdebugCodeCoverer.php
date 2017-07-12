@@ -48,7 +48,11 @@ class PhpUnitXdebugCodeCoverer implements CodeCoverer
                 $elements = array_merge($elements, $tests);
             }
 
-            return array_unique($elements);
+            $files = array_unique($elements);
+
+            return array_map(function($file){
+                return new Test($file);
+            }, $files);
         }, $cleanedKeys);
     }
 }
