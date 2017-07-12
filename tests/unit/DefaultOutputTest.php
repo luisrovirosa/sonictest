@@ -31,4 +31,15 @@ class DefaultOutputTest extends TestCase
 
         $output->printResult(new ExecutionResult(true, 1));
     }
+
+    /** @test */
+    public function report_that_has_been_an_error_when_some_test_has_failed()
+    {
+        $printerProphecy = $this->prophesize(Printer::class);
+        $output = new DefaultOutput($printerProphecy->reveal());
+
+        $printerProphecy->report("ERROR (1 test)")->shouldBeCalled();
+
+        $output->printResult(new ExecutionResult(false, 1));
+    }
 }
