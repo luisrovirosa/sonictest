@@ -23,7 +23,6 @@ class SonicTestTest extends TestCase
     /** @test */
     public function an_execution_with_one_change_covered_with_one_test_should_run_only_that_test()
     {
-        $this->markTestIncomplete('Not yet');
         $printer = $this->prophesize(Printer::class);
         $lib = SonicTest::withPrinter($printer->reveal());
         $this->makeOneChange();

@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 class PhpUnitXdebugCodeCovererTest extends TestCase
 {
-    const UNCOVERED_PRODUCTION_CODE = './src/UncoveredProductionCode.php';
-    const SIMPLE_PRODUCTION_CODE    = './src/SimpleProductionCode.php';
+    const UNCOVERED_PRODUCTION_CODE = 'tests/a_project_to_test/src/UncoveredProductionCode.php';
+    const SIMPLE_PRODUCTION_CODE    = 'tests/a_project_to_test/src/SimpleProductionCode.php';
 
     protected function tearDown()
     {
