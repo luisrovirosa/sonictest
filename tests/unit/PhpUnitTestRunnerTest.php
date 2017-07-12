@@ -21,7 +21,7 @@ class PhpUnitTestRunnerTest extends TestCase
     }
 
     /** @test */
-    public function the_tests_pass_when_there_are_tests_to_execute_with_successful_result()
+    public function the_result_has_been_successful_when_there_are_tests_to_execute_with_successful_result()
     {
         $runner = new PhpUnitTestRunner();
 
@@ -29,6 +29,18 @@ class PhpUnitTestRunnerTest extends TestCase
         $executionResult = $runner->runTests(new Tests([$test]));
 
         $this->assertTrue($executionResult->hasPassed());
+        $this->assertEquals(1, $executionResult->numberOfTests());
+    }
+
+    /** @test */
+    public function the_result_has_failed_when_there_are_tests_to_execute_with_failing_result()
+    {
+        $runner = new PhpUnitTestRunner();
+
+        $test = new Test('JlDojo\SonicTest\Tests\ProjectToTest\Tests\BuggyProductionCodeTest');
+        $executionResult = $runner->runTests(new Tests([$test]));
+
+        $this->assertFalse($executionResult->hasPassed());
         $this->assertEquals(1, $executionResult->numberOfTests());
     }
 }

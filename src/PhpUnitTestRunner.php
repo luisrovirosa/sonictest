@@ -9,13 +9,14 @@ class PhpUnitTestRunner implements TestRunner
         $hasPassed = true;
         $numberOfTests = 0;
         /** @var Test $test */
-        foreach ($tests->getTests() as $test){
-            $command = "./vendor/bin/phpunit --filter '" . $this->classNameForTest($test) . "'";
+        foreach ($tests->getTests() as $test) {
+            $command = "./vendor/bin/phpunit -c ./tests/a_project_to_test --filter '" . $this->classNameForTest($test) . "'";
             exec($command, $output);
             $lastOutput = $output[count($output) - 1];
             $hasPassed = strpos($lastOutput, 'OK') !== false;
-            preg_match('/.*\(([^\ ]*)\ .*/',$lastOutput, $matches);
-            $numberOfTests = $matches[1];
+            $numberOfTests = $hasPassed
+                ? $this->numberOfTestWhenTestPassed($lastOutput)
+                : $this->numberOfTestWhenTestFailed($lastOutput);
         }
         return new ExecutionResult($hasPassed, $numberOfTests);
     }
@@ -27,5 +28,21 @@ class PhpUnitTestRunner implements TestRunner
     private function classNameForTest(Test $test)
     {
         return str_replace('\\', '\\\\', $test->fullyQualifyClassName());
+    }
+
+    /**
+     * @param $lastOutput
+     * @return int
+     */
+    private function numberOfTestWhenTestPassed($lastOutput): int
+    {
+        preg_match('/.*\(([^\ ]*)\ .*/', $lastOutput, $matches);
+        return $matches[1];
+    }
+
+    private function numberOfTestWhenTestFailed($lastOutput)
+    {
+        preg_match('/.*Tests: ([^,]*),.*/', $lastOutput, $matches);
+        return $matches[1];
     }
 }

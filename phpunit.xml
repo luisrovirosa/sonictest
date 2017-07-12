@@ -23,8 +23,8 @@
         verbose="false">
     <testsuites>
         <testsuite name="Sonictest suite">
-            <directory>./tests</directory>
-            <exclude>./tests/data</exclude>
+            <directory>./tests/</directory>
+            <exclude>./tests/a_project_to_test</exclude>
         </testsuite>
     </testsuites>
     <filter>
