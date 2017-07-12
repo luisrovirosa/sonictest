@@ -4,13 +4,15 @@ namespace JlDojo\SonicTest;
 
 class PhpUnitXdebugCodeCoverer implements CodeCoverer
 {
-    const PREFIX = '/tests/data';
+    const PROJECT_TO_TEST = '/tests/data';
+    const RELATIVE_PATH   = '.' . self::PROJECT_TO_TEST;
+    const COVERAGE_FILE   = './file.php';
 
     public function cover(): CodeCoverage
     {
-        exec('./vendor/bin/phpunit -c ' . self::PREFIX . ' --whitelist .' . self::PREFIX . '/src  --coverage-php file.php');
+        exec('./vendor/bin/phpunit -c ' . self::RELATIVE_PATH. ' --whitelist ' . self::RELATIVE_PATH. '/src  --coverage-php ' . self::COVERAGE_FILE . '');
         /** @var \SebastianBergmann\CodeCoverage\CodeCoverage $coverage */
-        $coverage = include './file.php';
+        $coverage = include self::COVERAGE_FILE;
         $rawCodeCoverage = $coverage->getData();
         $coveredFiles = $this->removeWorkingDirectoryFromFilePath($rawCodeCoverage);
         return new CodeCoverage($this->calculateTestToExecute($coveredFiles));
@@ -23,7 +25,7 @@ class PhpUnitXdebugCodeCoverer implements CodeCoverer
     private function removeWorkingDirectoryFromFilePath($rawCodeCoverage): array
     {
         $keys = array_map(function ($path) {
-            return str_replace(dirname(__DIR__) . self::PREFIX, '.', $path);
+            return str_replace(dirname(__DIR__) . self::PROJECT_TO_TEST, '.', $path);
         }, array_keys($rawCodeCoverage));
         return array_combine($keys, $rawCodeCoverage);
     }

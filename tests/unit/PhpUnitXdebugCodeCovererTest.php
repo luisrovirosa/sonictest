@@ -10,6 +10,12 @@ class PhpUnitXdebugCodeCovererTest extends TestCase
     const UNCOVERED_PRODUCTION_CODE = './src/UncoveredProductionCode.php';
     const SIMPLE_PRODUCTION_CODE    = './src/SimpleProductionCode.php';
 
+    protected function tearDown()
+    {
+        parent::tearDown();
+        unlink('./file.php');
+    }
+
     /** @test */
     public function there_is_no_test_related_to_an_uncovered_file()
     {
