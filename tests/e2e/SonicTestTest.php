@@ -12,13 +12,12 @@ class SonicTestTest extends TestCase
     /** @test */
     public function an_execution_without_any_change_should_not_run_any_test()
     {
-        $this->markTestIncomplete('Not yet');
         $printer = $this->prophesize(Printer::class);
         $lib = SonicTest::withPrinter($printer->reveal());
 
-        $lib->run();
+        $printer->report("There is no test affected by changes")->shouldBeCalled();
 
-        $printer->report("There is no test affected by changes")->shouldHaveBeenCalled();
+        $lib->run();
     }
 
     /** @test */

@@ -4,7 +4,7 @@ namespace JlDojo\SonicTest\Tests;
 
 class Developer
 {
-    const SIMPLE_PRODUCTION_CODE_PATH = __DIR__ . '/data/src/SimpleProductionCode.php';
+    const SIMPLE_PRODUCTION_CODE_PATH = __DIR__ . '/a_project_to_test/src/SimpleProductionCode.php';
 
     public function changeSimpleProductionCode()
     {

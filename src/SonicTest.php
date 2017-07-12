@@ -46,7 +46,7 @@ class SonicTest
             new GitChangeDetector(new GitRepository()),
             new TestMatcher(new PhpUnitXdebugCodeCoverer()),
             new PhpUnitTestRunner(),
-            null
+            new DefaultOutput($printer)
         );
     }
 
