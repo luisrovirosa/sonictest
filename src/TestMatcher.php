@@ -2,8 +2,10 @@
 
 namespace JlDojo\SonicTest;
 
-interface TestMatcher
+class TestMatcher
 {
-    public function matchTests(Changes $changes) : Tests;
-
+    public function matchTests(Changes $changes): Tests
+    {
+        return new Tests();
+    }
 }
