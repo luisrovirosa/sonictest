@@ -6,7 +6,7 @@ class PhpUnitTestRunner implements TestRunner
 {
     public function runTests(Tests $tests): ExecutionResult
     {
-        $hasPassed = true;
+        $hasPassedAllTests = true;
         $numberOfTests = 0;
         /** @var Test $test */
         foreach ($tests->getTests() as $test) {
@@ -14,11 +14,12 @@ class PhpUnitTestRunner implements TestRunner
             exec($command, $output);
             $lastOutput = $output[count($output) - 1];
             $hasPassed = strpos($lastOutput, 'OK') !== false;
-            $numberOfTests = $hasPassed
+            $numberOfTests += $hasPassed
                 ? $this->numberOfTestWhenTestPassed($lastOutput)
                 : $this->numberOfTestWhenTestFailed($lastOutput);
+            $hasPassedAllTests = $hasPassedAllTests && $hasPassed;
         }
-        return new ExecutionResult($hasPassed, $numberOfTests);
+        return new ExecutionResult($hasPassedAllTests, $numberOfTests);
     }
 
     /**
