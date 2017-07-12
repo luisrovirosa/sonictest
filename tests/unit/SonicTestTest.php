@@ -44,7 +44,7 @@ class SonicTestTest extends TestCase
         $this->changeDetectorProphecy = $this->prophesize(ChangeDetector::class);
         $this->changeDetectorProphecy->detectChanges()->willReturn(new Changes([]));
         $this->testMatcherProphecy = $this->prophesize(TestMatcher::class);
-        $this->testMatcherProphecy->matchTests(Argument::any())->willReturn(new Tests());
+        $this->testMatcherProphecy->matchTests(Argument::any())->willReturn(new Tests([]));
         $this->printerProphecy = $this->prophesize(Printer::class);
         $this->testRunnerProphecy = $this->prophesize(TestRunner::class);
         $this->testRunnerProphecy->runTests(Argument::any())->willReturn(new ExecutionResult());
@@ -78,7 +78,7 @@ class SonicTestTest extends TestCase
     /** @test */
     public function run_uses_test_runner_with_tests()
     {
-        $tests = new Tests();
+        $tests = new Tests([]);
         $this->testMatcherProphecy->matchTests(Argument::any())->willReturn($tests);
         $sonicTest = $this->createSonicTest();
 
