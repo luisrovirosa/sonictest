@@ -1,6 +1,6 @@
 <?php
 
-namespace JlDojo\SonicTest\Tests\Data;
+namespace JlDojo\SonicTest\Tests\ProjectToTest;
 
 class SimpleProductionCode
 {

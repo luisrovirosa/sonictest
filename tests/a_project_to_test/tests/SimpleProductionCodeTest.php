@@ -1,8 +1,8 @@
 <?php
 
-namespace JlDojo\SonicTest\Tests\Data\Tests;
+namespace JlDojo\SonicTest\Tests\ProjectToTest\Tests;
 
-use JlDojo\SonicTest\Tests\Data\SimpleProductionCode;
+use JlDojo\SonicTest\Tests\ProjectToTest\SimpleProductionCode;
 use PHPUnit\Framework\TestCase;
 
 class SimpleProductionCodeTest extends TestCase

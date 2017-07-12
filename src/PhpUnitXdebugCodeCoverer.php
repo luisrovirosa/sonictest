@@ -4,7 +4,7 @@ namespace JlDojo\SonicTest;
 
 class PhpUnitXdebugCodeCoverer implements CodeCoverer
 {
-    const PROJECT_TO_TEST = '/tests/data';
+    const PROJECT_TO_TEST = '/tests/a_project_to_test';
     const RELATIVE_PATH   = '.' . self::PROJECT_TO_TEST;
     const COVERAGE_FILE   = './file.php';
 
