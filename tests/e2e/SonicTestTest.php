@@ -31,7 +31,7 @@ class SonicTestTest extends TestCase
 
         $lib->run();
 
-        $printer->report("OK (1 test, 1 assertion)")->shouldHaveBeenCalled();
+        $printer->report("OK (1 test)")->shouldHaveBeenCalled();
     }
 
     protected function tearDown()
