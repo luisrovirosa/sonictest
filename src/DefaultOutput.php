@@ -18,6 +18,10 @@ class DefaultOutput implements Output
 
     public function printResult(ExecutionResult $executionResult): void
     {
-        $this->printer->report("There is no test affected by changes");
+        if ($executionResult->numberOfTests() == 0){
+            $this->printer->report("There is no test affected by changes");
+        } else {
+            $this->printer->report("OK ({$executionResult->numberOfTests()} test)");
+        }
     }
 }

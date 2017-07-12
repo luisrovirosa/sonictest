@@ -28,9 +28,9 @@ class SonicTestTest extends TestCase
         $lib = SonicTest::withPrinter($printer->reveal());
         $this->makeOneChange();
 
-        $lib->run();
+        $printer->report("OK (1 test)")->shouldBeCalled();
 
-        $printer->report("OK (1 test)")->shouldHaveBeenCalled();
+        $lib->run();
     }
 
     protected function tearDown()

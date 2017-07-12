@@ -20,4 +20,15 @@ class DefaultOutputTest extends TestCase
 
         $output->printResult(new ExecutionResult(true, 0));
     }
+
+    /** @test */
+    public function report_everything_has_passed_when_the_tests_succeed()
+    {
+        $printerProphecy = $this->prophesize(Printer::class);
+        $output = new DefaultOutput($printerProphecy->reveal());
+
+        $printerProphecy->report("OK (1 test)")->shouldBeCalled();
+
+        $output->printResult(new ExecutionResult(true, 1));
+    }
 }
