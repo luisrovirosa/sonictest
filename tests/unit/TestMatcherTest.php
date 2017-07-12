@@ -37,6 +37,10 @@ class TestMatcherTest extends TestCase
         $testsToExecute = $testMatcher->matchTests(new Changes([new Change('./src/SimpleProductionCode.php')]));
 
         $this->assertCount(1, $testsToExecute->getTests());
+        /** @var Test $test */
+        $test = $testsToExecute->getTests()[0];
+        $this->assertInstanceOf(Test::class, $test);
+        $this->assertEquals('A\ClassName', $test->fullyQualifyClassName());
     }
 
     /** @test */
