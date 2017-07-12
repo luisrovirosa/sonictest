@@ -61,4 +61,23 @@ class TestMatcherTest extends TestCase
 
         $this->assertCount(1, $testsToExecute->getTests());
     }
+
+    /** @test */
+    public function there_is_more_than_one_test_to_execute_when_the_changes_are_covered_by_the_multiple_tests()
+    {
+        $codeCoverer = $this->prophesize(CodeCoverer::class);
+        $coverage = [
+            './src/SimpleProductionCode.php' => [new Test('A\ClassName')],
+            './src/AnotherProductionCode.php' => [new Test('A\AnotherClassName')],
+        ];
+        $codeCoverer->cover()->willReturn(new CodeCoverage($coverage));
+        $testMatcher = new TestMatcher($codeCoverer->reveal());
+
+        $testsToExecute = $testMatcher->matchTests(new Changes([
+            new Change('./src/SimpleProductionCode.php'),
+            new Change('./src/AnotherProductionCode.php'),
+        ]));
+
+        $this->assertCount(2, $testsToExecute->getTests());
+    }
 }
