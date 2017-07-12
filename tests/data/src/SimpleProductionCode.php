@@ -6,6 +6,7 @@ class SimpleProductionCode
 {
     public function execute(): bool
     {
-        return true;
+        $result = true;
+        return $result;
     }
 }

@@ -8,7 +8,7 @@ class PhpUnitXdebugCodeCoverer implements CodeCoverer
 
     public function cover(): CodeCoverage
     {
-        exec('./vendor/bin/phpunit -c ' . self::PREFIX . ' --whitelist ' . self::PREFIX . '/src  --coverage-php file.php');
+        exec('./vendor/bin/phpunit -c ' . self::PREFIX . ' --whitelist .' . self::PREFIX . '/src  --coverage-php file.php');
         /** @var \SebastianBergmann\CodeCoverage\CodeCoverage $coverage */
         $coverage = include './file.php';
         $rawCodeCoverage = $coverage->getData();
@@ -41,13 +41,12 @@ class PhpUnitXdebugCodeCoverer implements CodeCoverer
             $testNotNull = array_filter($listOfTests, function ($elements) {
                 return is_array($elements);
             });
-
             $elements = [];
             foreach ($testNotNull as $tests) {
                 $elements = array_merge($elements, $tests);
             }
 
-            return $elements;
+            return array_unique($elements);
         }, $cleanedKeys);
     }
 }
