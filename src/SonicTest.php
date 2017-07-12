@@ -44,8 +44,8 @@ class SonicTest
     {
         return new SonicTest(
             new GitChangeDetector(new GitRepository()),
-            null,
-            null,
+            new TestMatcher(new PhpUnitXdebugCodeCoverer()),
+            new PhpUnitTestRunner(),
             null
         );
     }
