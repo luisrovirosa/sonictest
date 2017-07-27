@@ -14,7 +14,7 @@ class PhpUnitXdebugCodeCovererTest extends TestCase
     protected function tearDown()
     {
         parent::tearDown();
-//        unlink('./file.php');
+        unlink('./file.php');
     }
 
     /** @test */
