@@ -25,7 +25,7 @@ class PhpUnitXdebugCodeCoverer implements CodeCoverer
     private function removeWorkingDirectoryFromFilePath($rawCodeCoverage): array
     {
         $keys = array_map(function ($path) {
-            return str_replace(dirname(__DIR__). '/', '', $path);
+            return str_replace(dirname(__DIR__) . 'PhpUnitXdebugCodeCoverer.php/', '', $path);
         }, array_keys($rawCodeCoverage));
         return array_combine($keys, $rawCodeCoverage);
     }
