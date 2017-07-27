@@ -1,6 +1,9 @@
 <?php
 
-namespace JlDojo\SonicTest;
+namespace JlDojo\SonicTest\TestRunner;
+
+use JlDojo\SonicTest\TestMatcher\Test;
+use JlDojo\SonicTest\TestMatcher\Tests;
 
 class PhpUnitTestRunner implements TestRunner
 {

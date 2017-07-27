@@ -2,15 +2,16 @@
 
 namespace JlDojo\SonicTest\Tests\Unit;
 
-use JlDojo\SonicTest\ChangeDetector;
-use JlDojo\SonicTest\Changes;
-use JlDojo\SonicTest\ExecutionResult;
-use JlDojo\SonicTest\Output;
-use JlDojo\SonicTest\Printer;
+
+use JlDojo\SonicTest\ChangeDetector\ChangeDetector;
+use JlDojo\SonicTest\ChangeDetector\Changes;
+use JlDojo\SonicTest\Output\Output;
+use JlDojo\SonicTest\Output\Printer\Printer;
 use JlDojo\SonicTest\SonicTest;
-use JlDojo\SonicTest\TestMatcher;
-use JlDojo\SonicTest\TestRunner;
-use JlDojo\SonicTest\Tests;
+use JlDojo\SonicTest\TestMatcher\TestMatcher;
+use JlDojo\SonicTest\TestMatcher\Tests;
+use JlDojo\SonicTest\TestRunner\ExecutionResult;
+use JlDojo\SonicTest\TestRunner\TestRunner;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;

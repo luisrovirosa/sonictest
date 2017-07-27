@@ -2,8 +2,8 @@
 
 namespace JlDojo\SonicTest\Tests\Unit;
 
-use JlDojo\SonicTest\PhpUnitXdebugCodeCoverer;
-use JlDojo\SonicTest\Test;
+use JlDojo\SonicTest\CodeCoverer\PhpUnitXdebugCodeCoverer;
+use JlDojo\SonicTest\TestMatcher\Test;
 use PHPUnit\Framework\TestCase;
 
 class PhpUnitXdebugCodeCovererTest extends TestCase
@@ -14,7 +14,7 @@ class PhpUnitXdebugCodeCovererTest extends TestCase
     protected function tearDown()
     {
         parent::tearDown();
-        unlink('./file.php');
+//        unlink('./file.php');
     }
 
     /** @test */

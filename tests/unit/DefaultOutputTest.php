@@ -2,9 +2,9 @@
 
 namespace JlDojo\SonicTest\Tests\Unit;
 
-use JlDojo\SonicTest\DefaultOutput;
-use JlDojo\SonicTest\ExecutionResult;
-use JlDojo\SonicTest\Printer;
+use JlDojo\SonicTest\Output\DefaultOutput;
+use JlDojo\SonicTest\Output\Printer\Printer;
+use JlDojo\SonicTest\TestRunner\ExecutionResult;
 use PHPUnit\Framework\TestCase;
 
 class DefaultOutputTest extends TestCase

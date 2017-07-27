@@ -1,6 +1,9 @@
 <?php
 
-namespace JlDojo\SonicTest;
+namespace JlDojo\SonicTest\Output;
+
+use JlDojo\SonicTest\Output\Printer\Printer;
+use JlDojo\SonicTest\TestRunner\ExecutionResult;
 
 class DefaultOutput implements Output
 {

@@ -1,6 +1,8 @@
 <?php
 
-namespace JlDojo\SonicTest;
+namespace JlDojo\SonicTest\CodeCoverer;
+
+use JlDojo\SonicTest\TestMatcher\Test;
 
 class PhpUnitXdebugCodeCoverer implements CodeCoverer
 {

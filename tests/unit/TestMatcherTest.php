@@ -2,13 +2,12 @@
 
 namespace JlDojo\SonicTest\Tests\Unit;
 
-use JlDojo\SonicTest\Change;
-use JlDojo\SonicTest\Changes;
-use JlDojo\SonicTest\CodeCoverage;
-use JlDojo\SonicTest\CodeCoverer;
-use JlDojo\SonicTest\Test;
-use JlDojo\SonicTest\TestMatcher;
-use JlDojo\SonicTest\Tests;
+use JlDojo\SonicTest\ChangeDetector\Change;
+use JlDojo\SonicTest\ChangeDetector\Changes;
+use JlDojo\SonicTest\CodeCoverer\CodeCoverage;
+use JlDojo\SonicTest\CodeCoverer\CodeCoverer;
+use JlDojo\SonicTest\TestMatcher\Test;
+use JlDojo\SonicTest\TestMatcher\TestMatcher;
 use PHPUnit\Framework\TestCase;
 
 class TestMatcherTest extends TestCase

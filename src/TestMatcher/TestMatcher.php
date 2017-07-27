@@ -1,6 +1,9 @@
 <?php
 
-namespace JlDojo\SonicTest;
+namespace JlDojo\SonicTest\TestMatcher;
+
+use JlDojo\SonicTest\ChangeDetector\Changes;
+use JlDojo\SonicTest\CodeCoverer\CodeCoverer;
 
 class TestMatcher
 {

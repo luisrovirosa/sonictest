@@ -2,9 +2,9 @@
 
 namespace JlDojo\SonicTest\Tests\Unit;
 
-use JlDojo\SonicTest\Change;
-use JlDojo\SonicTest\GitChangeDetector;
-use JlDojo\SonicTest\GitRepository;
+use JlDojo\SonicTest\ChangeDetector\Change;
+use JlDojo\SonicTest\ChangeDetector\GitChangeDetector;
+use JlDojo\SonicTest\ChangeDetector\GitRepository;
 use PHPUnit\Framework\TestCase;
 
 class GitChangeDetectorTest extends TestCase

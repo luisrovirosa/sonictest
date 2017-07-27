@@ -1,6 +1,8 @@
 <?php
 
-namespace JlDojo\SonicTest;
+namespace JlDojo\SonicTest\Output;
+
+use JlDojo\SonicTest\TestRunner\ExecutionResult;
 
 interface Output
 {

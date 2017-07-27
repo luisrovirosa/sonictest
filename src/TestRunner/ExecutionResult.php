@@ -1,6 +1,6 @@
 <?php
 
-namespace JlDojo\SonicTest;
+namespace JlDojo\SonicTest\TestRunner;
 
 class ExecutionResult
 {

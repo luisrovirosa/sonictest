@@ -2,9 +2,9 @@
 
 namespace JlDojo\SonicTest\Tests\Unit;
 
-use JlDojo\SonicTest\PhpUnitTestRunner;
-use JlDojo\SonicTest\Test;
-use JlDojo\SonicTest\Tests;
+use JlDojo\SonicTest\TestRunner\PhpUnitTestRunner;
+use JlDojo\SonicTest\TestMatcher\Test;
+use JlDojo\SonicTest\TestMatcher\Tests;
 use PHPUnit\Framework\TestCase;
 
 class PhpUnitTestRunnerTest extends TestCase

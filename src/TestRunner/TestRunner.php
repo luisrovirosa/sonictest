@@ -1,6 +1,8 @@
 <?php
 
-namespace JlDojo\SonicTest;
+namespace JlDojo\SonicTest\TestRunner;
+
+use JlDojo\SonicTest\TestMatcher\Tests;
 
 interface TestRunner
 {

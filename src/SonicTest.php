@@ -2,6 +2,17 @@
 
 namespace JlDojo\SonicTest;
 
+use JlDojo\SonicTest\ChangeDetector\ChangeDetector;
+use JlDojo\SonicTest\ChangeDetector\GitChangeDetector;
+use JlDojo\SonicTest\ChangeDetector\GitRepository;
+use JlDojo\SonicTest\CodeCoverer\PhpUnitXdebugCodeCoverer;
+use JlDojo\SonicTest\Output\DefaultOutput;
+use JlDojo\SonicTest\Output\Output;
+use JlDojo\SonicTest\Output\Printer\Printer;
+use JlDojo\SonicTest\TestMatcher\TestMatcher;
+use JlDojo\SonicTest\TestRunner\PhpUnitTestRunner;
+use JlDojo\SonicTest\TestRunner\TestRunner;
+
 class SonicTest
 {
     /**
